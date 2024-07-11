@@ -1,16 +1,101 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator App</title>
-  </head>
-  <body class="   bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400">
-    <section class="rounded-2xl mx-auto my-8 max-w-md bg-white h-[90vh]">
-      <div class=" pt-3  ">
-        <input type="text" value="20" class=" outline-none border shadow-inner w-full h-[30vh]">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator App</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./src/output.css">
+</head>
+
+<body class=" bg-gradient-to-r from-[#60696B] via-orange-200 to-[#60696B] ">
+  <section class="rounded-2xl mx-auto my-8 max-w-md bg-slate-200 h-[90vh]">
+    <div class=" pt-3 px-4  ">
+      <input type="text" placeholder="0" id="output-screen"
+        class="  text-end text-3xl outline-none border rounded-xl px-10 mt-10 shadow-inner w-full h-[20vh]">
+    </div>
+    <section>
+      <div class="container">
+        <div class=" grid grid-cols-4 gap-4 px-10 pt-5">
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="clear()">AC</button>
+          <button class="bg-white text-[#FF6700]  font-bold rounded-xl items-center justify-center  w-14 h-14 flex"
+            onclick="del()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M6.535 3h14.464a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.535a1 1 0 0 1-.833-.445l-5.333-8a1 1 0 0 1 0-1.11l5.333-8A1 1 0 0 1 6.535 3m.535 2l-4.667 7l4.667 7H20V5zM13 10.586l2.828-2.829l1.414 1.415L14.414 12l2.828 2.828l-1.414 1.415l-2.829-2.829l-2.828 2.829l-1.414-1.415L11.585 12L8.757 9.172l1.414-1.415z" />
+            </svg>
+          </button>
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-2xl w-14 h-14 flex"
+            onclick="display('%')">%</button>
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-3xl w-14 h-14 flex"
+            onclick="display('/')">÷</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('7')">7</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('8')">8</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('9')">9</button>
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-3xl w-14 h-14 flex"
+            onclick="display('*')">×</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('4')">4</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('5')">5</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('6')">6</button>
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-3xl w-14 h-14 flex"
+            onclick="display('-')">−</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('1')">1</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('2')">2</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('3')">3</button>
+          <button
+            class="bg-white text-[#FF6700] font-bold rounded-xl items-center justify-center text-3xl w-14 h-14 flex"
+            onclick="display('+')">+</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('00')">00</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('0')">0</button>
+          <button class="bg-white rounded-xl items-center justify-center text-xl w-14 h-14 flex"
+            onclick="display('.')">.</button>
+          <button
+            class="bg-[#FF6700] text-white font-bold text-2xl rounded-xl items-center justify-center w-14 h-14 flex"
+            onclick="calculate()">=</button>
+        </div>
       </div>
+      </div>
+      <script>
+        let outputScreen = document.getElementById("output-screen");
+        function display(input) {
+          outputScreen.value += input;
+        }
+        function calculate() {
+          try {
+            outputScreen.value = eval(outputScreen.value);
+          }
+          catch {
+            alert('invalid input')
+          }
+        }
+        function clear() {
+          document.getElementById("output-screen").value = "";
+        }
+        function del() {
+          outputScreen.value = outputScreen.value.slice(0, -1);
+        }
+      </script>
     </section>
-    <script type="module" src="/main.js"></script>
-  </body>
+  </section>
+  <script type="module" src="./main.js"></script>
+</body>
+
 </html>
